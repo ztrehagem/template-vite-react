@@ -1,7 +1,5 @@
 env:
-  browser: true
   es2021: true
-  node: true
 
 extends:
   - eslint:recommended
@@ -17,6 +15,10 @@ parserOptions:
   ecmaVersion: latest
   sourceType: module
 
+settings:
+  react:
+    version: detect
+
 plugins:
   - react
   - "@typescript-eslint"
@@ -31,3 +33,15 @@ rules:
     - varsIgnorePattern: "^_"
       args: "none"
       ignoreRestSiblings: true
+
+overrides:
+  - files: ["src/**/*.{ts,tsx}"]
+    env:
+      browser: true
+    rules:
+      no-console: "error"
+      no-debugger: "error"
+
+  - files: ["*.{ts}"]
+    env:
+      node: true
